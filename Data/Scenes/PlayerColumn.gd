@@ -4,6 +4,7 @@ export var player_name : String = ''
 export var player_icon : Texture
 
 onready var rows = [$'%Ones', $'%Twos', $'%Threes', $'%Fours', $'%Fives', $'%Sixes', $'%Bonus', $'%3OfAKind', $'%4OfAKind', $'%FullHouse', $'%SMStraight', $'%LGStraight', $'%Yahtzee', $'%Chance', $'%Total']
+onready var bonus_progress : ProgressBar = rows[6].get_child(0)
 
 signal end_turn(playerName)
 
@@ -128,6 +129,8 @@ func get_total() -> int:
 	for row in rows:
 		if row is Button and row.pressed:
 			sum += int(row.text)
+	if bonus_progress.value == bonus_progress.max_value:
+		sum += 35
 	return sum
 
 func refresh_bonus() -> void:
@@ -138,5 +141,7 @@ func refresh_bonus() -> void:
 		sum += int(row.text)
 	if sum >= 63:
 		rows[6].text = '35'
+		bonus_progress.value = 63
 		return
-	rows[6].text = str(sum) + ' (' + str(63-sum) + ' left)'
+	bonus_progress.value = sum
+	rows[6].text = '35' + ' (' + str(63-sum) + ' left)'

@@ -182,8 +182,18 @@ margin_bottom = 313.0
 rect_min_size = Vector2( 0, 27 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
+text = "34 (29 left)"
 align = 1
 valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Bonus"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 63.0
+step = 1.0
+value = 1.0
+percent_visible = false
 
 [node name="HSeparator7" type="HSeparator" parent="."]
 margin_top = 313.0
