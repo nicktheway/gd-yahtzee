@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://Data/Fonts/Resources/NameFont.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.380392, 0.537255, 0.184314, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.290196, 0.4, 0.172549, 0.596078 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.290196, 0.4, 0.172549, 0.596078 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.180392, 0.207843, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.380392, 0.537255, 0.184314, 1 )
+
+[resource]
+default_font = ExtResource( 1 )
+Button/styles/disabled = SubResource( 5 )
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 3 )
+Fonts/base_type = "Player"

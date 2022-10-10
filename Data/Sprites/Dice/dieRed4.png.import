@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/dieRed4.png-3b87e4e71208382c10084606aeec485a.res"
+group_file="res://Data/Sprites/Dice/DieRedAtlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Data/Sprites/Dice/dieRed4.png"
+dest_files=[ "res://.import/dieRed4.png-3b87e4e71208382c10084606aeec485a.res" ]
+
+[params]
+
+atlas_file="res://Data/Sprites/Dice/DieRedAtlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true

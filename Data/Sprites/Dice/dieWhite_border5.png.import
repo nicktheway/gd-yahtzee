@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/dieWhite_border5.png-59e4fc3aa78b233bd75b146a2f606b33.res"
+group_file="res://Data/Sprites/Dice/DieWhiteBorderAtlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Data/Sprites/Dice/dieWhite_border5.png"
+dest_files=[ "res://.import/dieWhite_border5.png-59e4fc3aa78b233bd75b146a2f606b33.res" ]
+
+[params]
+
+atlas_file="res://Data/Sprites/Dice/DieWhiteBorderAtlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true

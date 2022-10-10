@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/dieWhite4.png-e19d8af48179041b158af7fe2db2a8ff.res"
+group_file="res://Data/Sprites/Dice/DieWhiteAtlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Data/Sprites/Dice/dieWhite4.png"
+dest_files=[ "res://.import/dieWhite4.png-e19d8af48179041b158af7fe2db2a8ff.res" ]
+
+[params]
+
+atlas_file="res://Data/Sprites/Dice/DieWhiteAtlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true

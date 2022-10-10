@@ -1,0 +1,377 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Data/Scenes/PlayerColumn.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Data/Sprites/cat.png" type="Texture" id=2]
+[ext_resource path="res://Data/Scenes/GamePanel.gd" type="Script" id=3]
+[ext_resource path="res://Data/Scenes/Die.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Data/Sprites/clown.png" type="Texture" id=5]
+[ext_resource path="res://Theme.tres" type="Theme" id=6]
+[ext_resource path="res://Data/Fonts/Resources/RollFont.tres" type="DynamicFont" id=7]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 800 )
+theme = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+
+[node name="GamePanel" type="Panel" parent="MarginContainer"]
+margin_right = 570.0
+margin_bottom = 770.0
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/GamePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/GamePanel/VBoxContainer"]
+margin_right = 540.0
+margin_bottom = 575.0
+
+[node name="Labels" type="VBoxContainer" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 575.0
+custom_constants/separation = 0
+
+[node name="UpMargin" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_right = 150.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Ones" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 100.0
+margin_right = 150.0
+margin_bottom = 127.0
+rect_min_size = Vector2( 0, 27 )
+text = "Ones"
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 127.0
+margin_right = 150.0
+margin_bottom = 131.0
+
+[node name="Twos" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 131.0
+margin_right = 150.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 0, 27 )
+text = "Twos"
+valign = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 158.0
+margin_right = 150.0
+margin_bottom = 162.0
+
+[node name="Threes" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 162.0
+margin_right = 150.0
+margin_bottom = 189.0
+rect_min_size = Vector2( 0, 27 )
+text = "Threes"
+valign = 1
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 189.0
+margin_right = 150.0
+margin_bottom = 193.0
+
+[node name="Fours" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 193.0
+margin_right = 150.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 0, 27 )
+text = "Fours"
+valign = 1
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 220.0
+margin_right = 150.0
+margin_bottom = 224.0
+
+[node name="Fives" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 224.0
+margin_right = 150.0
+margin_bottom = 251.0
+rect_min_size = Vector2( 0, 27 )
+text = "Fives"
+valign = 1
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 251.0
+margin_right = 150.0
+margin_bottom = 255.0
+
+[node name="Sixes" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 255.0
+margin_right = 150.0
+margin_bottom = 282.0
+rect_min_size = Vector2( 0, 27 )
+text = "Sixes"
+valign = 1
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 282.0
+margin_right = 150.0
+margin_bottom = 286.0
+
+[node name="Bonus" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 286.0
+margin_right = 150.0
+margin_bottom = 313.0
+rect_min_size = Vector2( 0, 27 )
+text = "Bonus"
+valign = 1
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 313.0
+margin_right = 150.0
+margin_bottom = 317.0
+
+[node name="3OfAKind" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 317.0
+margin_right = 150.0
+margin_bottom = 344.0
+rect_min_size = Vector2( 0, 27 )
+text = "3 of a kind"
+valign = 1
+
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 344.0
+margin_right = 150.0
+margin_bottom = 348.0
+
+[node name="4OfAKind" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 348.0
+margin_right = 150.0
+margin_bottom = 375.0
+rect_min_size = Vector2( 0, 27 )
+text = "4 of a kind"
+valign = 1
+
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 375.0
+margin_right = 150.0
+margin_bottom = 379.0
+
+[node name="FullHouse" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 379.0
+margin_right = 150.0
+margin_bottom = 406.0
+rect_min_size = Vector2( 0, 27 )
+text = "Full house"
+valign = 1
+
+[node name="HSeparator10" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 406.0
+margin_right = 150.0
+margin_bottom = 410.0
+
+[node name="SMStraight" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 410.0
+margin_right = 150.0
+margin_bottom = 437.0
+rect_min_size = Vector2( 0, 27 )
+text = "SM straight"
+valign = 1
+
+[node name="HSeparator11" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 437.0
+margin_right = 150.0
+margin_bottom = 441.0
+
+[node name="LGStraight" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 441.0
+margin_right = 150.0
+margin_bottom = 468.0
+rect_min_size = Vector2( 0, 27 )
+text = "LG straight"
+valign = 1
+
+[node name="HSeparator12" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 468.0
+margin_right = 150.0
+margin_bottom = 472.0
+
+[node name="Yahtzee" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 472.0
+margin_right = 150.0
+margin_bottom = 499.0
+rect_min_size = Vector2( 0, 27 )
+text = "YAHTZEE"
+valign = 1
+
+[node name="HSeparator13" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 499.0
+margin_right = 150.0
+margin_bottom = 503.0
+
+[node name="Chance" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 503.0
+margin_right = 150.0
+margin_bottom = 530.0
+rect_min_size = Vector2( 0, 27 )
+text = "Chance"
+valign = 1
+
+[node name="HSeparator14" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 530.0
+margin_right = 150.0
+margin_bottom = 534.0
+
+[node name="Total" type="Label" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 534.0
+margin_right = 150.0
+margin_bottom = 561.0
+rect_min_size = Vector2( 0, 27 )
+text = "Total"
+valign = 1
+
+[node name="HSeparator15" type="HSeparator" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 561.0
+margin_right = 150.0
+margin_bottom = 565.0
+
+[node name="BottomMargin" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/Labels"]
+margin_top = 565.0
+margin_right = 150.0
+margin_bottom = 575.0
+rect_min_size = Vector2( 150, 10 )
+
+[node name="PlayerColumn" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 154.0
+margin_right = 345.0
+margin_bottom = 575.0
+player_name = "nn"
+player_icon = ExtResource( 2 )
+
+[node name="PlayerColumn2" parent="MarginContainer/GamePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 349.0
+margin_right = 540.0
+margin_bottom = 575.0
+player_name = "Random Clown"
+player_icon = ExtResource( 5 )
+
+[node name="Margin" type="Control" parent="MarginContainer/GamePanel/VBoxContainer"]
+margin_top = 579.0
+margin_right = 540.0
+margin_bottom = 584.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="DiceContainer" type="HFlowContainer" parent="MarginContainer/GamePanel/VBoxContainer"]
+margin_top = 588.0
+margin_right = 540.0
+margin_bottom = 658.0
+
+[node name="Control" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer"]
+margin_right = 29.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Die1" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_left = 33.0
+margin_right = 109.0
+
+[node name="Separator" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer"]
+margin_left = 113.0
+margin_right = 127.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 5 )
+size_flags_horizontal = 3
+
+[node name="Die2" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_left = 131.0
+margin_right = 207.0
+
+[node name="Separator2" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer"]
+margin_left = 211.0
+margin_right = 225.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 5 )
+size_flags_horizontal = 3
+
+[node name="Die3" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_left = 229.0
+margin_right = 305.0
+
+[node name="Separator3" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer"]
+margin_left = 309.0
+margin_right = 323.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 5 )
+size_flags_horizontal = 3
+
+[node name="Die4" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_left = 327.0
+margin_right = 403.0
+
+[node name="Separator4" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer"]
+margin_left = 407.0
+margin_right = 421.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 5 )
+size_flags_horizontal = 3
+
+[node name="Die5" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_left = 425.0
+margin_right = 501.0
+
+[node name="Separator5" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer"]
+margin_left = 505.0
+margin_right = 505.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Control2" type="Control" parent="MarginContainer/GamePanel/VBoxContainer/DiceContainer"]
+margin_left = 509.0
+margin_right = 538.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ReadDiceLabel" type="Label" parent="MarginContainer/GamePanel/VBoxContainer"]
+margin_top = 662.0
+margin_right = 540.0
+margin_bottom = 680.0
+align = 1
+valign = 1
+
+[node name="Margin2" type="Control" parent="MarginContainer/GamePanel/VBoxContainer"]
+margin_top = 684.0
+margin_right = 540.0
+margin_bottom = 689.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="RollButton" type="Button" parent="MarginContainer/GamePanel/VBoxContainer"]
+margin_top = 693.0
+margin_right = 540.0
+margin_bottom = 733.0
+rect_min_size = Vector2( 0, 40 )
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 7 )
+text = "Roll Dice ● ① ② ③"
+
+[connection signal="end_turn" from="MarginContainer/GamePanel/VBoxContainer/HBoxContainer/PlayerColumn" to="MarginContainer/GamePanel" method="_on_PlayerColumn_end_turn"]
+[connection signal="pressed" from="MarginContainer/GamePanel/VBoxContainer/RollButton" to="MarginContainer/GamePanel" method="_on_RollButton_pressed"]
