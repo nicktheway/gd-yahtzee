@@ -26,6 +26,7 @@ func roll() -> void:
 
 func _on_Timer_timeout() -> void:
 	var randI = randi() % 6
+#	var randI = randi() % 1 + 5
 	die_button.icon = die_textures[randI]
 
 func _on_RotationTimer_timeout() -> void:

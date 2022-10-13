@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Data/Scenes/PlayerColumn.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://PlayerTheme.tres" type="Theme" id=3]
 [ext_resource path="res://Data/Fonts/Resources/InfoFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Data/StyleBoxes/StyleBox_LabelBG.tres" type="StyleBox" id=5]
 
 [node name="PlayerColumn" type="VBoxContainer"]
 anchor_right = 1.0
@@ -71,6 +72,12 @@ margin_left = 402.0
 margin_right = 600.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="Header"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 5 )
 
 [node name="Ones" type="Button" parent="."]
 unique_name_in_owner = true
@@ -192,7 +199,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 max_value = 63.0
 step = 1.0
-value = 1.0
 percent_visible = false
 
 [node name="HSeparator7" type="HSeparator" parent="."]
@@ -331,6 +337,12 @@ custom_fonts/font = ExtResource( 4 )
 align = 1
 valign = 1
 
+[node name="Panel" type="Panel" parent="Total"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 5 )
+
 [node name="HSeparator15" type="HSeparator" parent="."]
 margin_top = 561.0
 margin_right = 600.0
@@ -343,3 +355,5 @@ margin_right = 600.0
 margin_bottom = 575.0
 rect_min_size = Vector2( 0, 10 )
 size_flags_horizontal = 3
+
+[node name="BonusTween" type="Tween" parent="."]

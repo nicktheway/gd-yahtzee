@@ -3,8 +3,33 @@ extends Control
 export var player_name : String = ''
 export var player_icon : Texture
 
+enum EMappings {
+	Ones = 0,
+	Twos = 1,
+	Threes = 2,
+	Fours = 3,
+	Fives = 4,
+	Sixes = 5,
+	Bonus = 6,
+	ThreeOfAKind  = 7,
+	FourOfAKind = 8,
+	FullHouse = 9,
+	SMStraight = 10,
+	LGStraight = 11,
+	Yahtzee = 12,
+	Chance = 13,
+	Total = 14
+}
+
 onready var rows = [$'%Ones', $'%Twos', $'%Threes', $'%Fours', $'%Fives', $'%Sixes', $'%Bonus', $'%3OfAKind', $'%4OfAKind', $'%FullHouse', $'%SMStraight', $'%LGStraight', $'%Yahtzee', $'%Chance', $'%Total']
 onready var bonus_progress : ProgressBar = rows[6].get_child(0)
+onready var bonus_tween : Tween = $BonusTween
+
+var has_yahtzeed : bool = false
+var has_bonused : bool = false
+var last_rolls : Array
+
+onready var pressedBG : StyleBoxFlat = load('res://Data/StyleBoxes/StyleBox_GreenPressed.tres')
 
 signal end_turn(playerName)
 
@@ -30,6 +55,13 @@ func on_button_pressed(identifier: String) -> void:
 		if buttonNode.text.empty():
 			buttonNode.pressed = false
 			return
+		var yPoints : int = int(rows[EMappings.Yahtzee].text.split(' ')[0])
+		if is_yahtzee(last_rolls) and rows[EMappings.Yahtzee].pressed and yPoints > 0:
+			if not has_yahtzeed:
+				has_yahtzeed = true
+			else:
+				# warning-ignore:integer_division
+				rows[EMappings.Yahtzee].text = str(yPoints + 100) + ' (' + str((yPoints + 100) / 100 + 1) + 'x)'
 		refresh_bonus()
 		refresh_total()
 		buttonNode.release_focus()
@@ -44,23 +76,24 @@ func refresh_total() -> void:
 	rows[14].text = str(get_total())
 	
 func refresh_for_rolls(rollArray: Array) -> void:
+	last_rolls = rollArray
 	for i in 6:
 		if rows[i].pressed: continue
 		rows[i].text = str(get_number_res(i+1, rollArray))
-	for i in [7, 8]:
+	for i in [EMappings.ThreeOfAKind, EMappings.FourOfAKind]:
 		if rows[i].pressed: continue
 		rows[i].text = str(get_of_a_kind_res(3 if i == 7 else (4 if i == 8 else 5), rollArray))
 	
-	if not rows[9].pressed:
-		rows[9].text = str(get_full_house_res(rollArray))
-	if not rows[10].pressed:
-		rows[10].text = str(get_straight_res(false, rollArray))
-	if not rows[11].pressed:
-		rows[11].text = str(get_straight_res(true, rollArray))
-	if not rows[12].pressed:
-		rows[12].text = str(50 if is_yahtzee(rollArray) else 0)
-	if not rows[13].pressed:
-		rows[13].text = str(get_chance_res(rollArray))
+	if not rows[EMappings.FullHouse].pressed:
+		rows[EMappings.FullHouse].text = str(get_full_house_res(rollArray))
+	if not rows[EMappings.SMStraight].pressed:
+		rows[EMappings.SMStraight].text = '30' if straight_multi_yahtzee(rollArray) else str(get_straight_res(false, rollArray))
+	if not rows[EMappings.LGStraight].pressed:
+		rows[EMappings.LGStraight].text = '40' if straight_multi_yahtzee(rollArray) else str(get_straight_res(true, rollArray))
+	if not rows[EMappings.Yahtzee].pressed:
+		rows[EMappings.Yahtzee].text = str(50 if is_yahtzee(rollArray) else 0)
+	if not rows[EMappings.Chance].pressed:
+		rows[EMappings.Chance].text = str(get_chance_res(rollArray))
 
 func get_number_res(number: int, rollArray: Array) -> int:
 	var sum = 0
@@ -104,6 +137,11 @@ func get_full_house_res(rollArray: Array) -> int:
 			return 0
 	return 25 if diffNums.size() <= 2 else 0
 
+func straight_multi_yahtzee(rollArray: Array) -> bool:
+	var num = rollArray[0]
+	var is_pressed : bool = rows[num - 1].pressed
+	return is_yahtzee(rollArray) and is_pressed and rows[EMappings.Yahtzee].pressed and int(rows[EMappings.Yahtzee].text) != 0
+
 func get_straight_res(large: bool, rollArray: Array) -> int:
 	for i in [3, 4]:
 		if rollArray.find(i) == -1:
@@ -127,9 +165,12 @@ func is_yahtzee(rollArray: Array) -> bool:
 func get_total() -> int:
 	var sum := 0
 	for row in rows:
-		if row is Button and row.pressed:
+		if row == rows[EMappings.Yahtzee]:
+			var yPoints : int = int(rows[EMappings.Yahtzee].text.split(' ')[0])
+			sum += yPoints
+		elif row is Button and row.pressed:
 			sum += int(row.text)
-	if bonus_progress.value == bonus_progress.max_value:
+	if has_bonused:
 		sum += 35
 	return sum
 
@@ -140,8 +181,17 @@ func refresh_bonus() -> void:
 		if not row.pressed: continue
 		sum += int(row.text)
 	if sum >= 63:
-		rows[6].text = '35'
-		bonus_progress.value = 63
+		rows[EMappings.Bonus].text = '35'
+		has_bonused = true
+		set_bonus_gradually(63)
+		$Bonus/ProgressBar.set('custom_styles/fg', pressedBG)
+		rows[EMappings.Bonus].set('custom_fonts/font', null)
 		return
-	bonus_progress.value = sum
-	rows[6].text = '35' + ' (' + str(63-sum) + ' left)'
+	set_bonus_gradually(sum)
+	rows[EMappings.Bonus].text = '0' + ' (' + str(63-sum) + ' left)'
+
+func set_bonus_gradually(bonusPoint: int) -> void:
+	var dist : int = int(abs(bonusPoint - bonus_progress.value))
+	var _ret = bonus_tween.interpolate_property(bonus_progress, 'value', bonus_progress.value, bonusPoint, 0.01 * dist)
+	_ret = bonus_tween.start()
+	
