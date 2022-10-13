@@ -11,7 +11,7 @@ enum EMappings {
 	Fives = 4,
 	Sixes = 5,
 	Bonus = 6,
-	ThreeOfAKind  = 7,
+	ThreeOfAKind = 7,
 	FourOfAKind = 8,
 	FullHouse = 9,
 	SMStraight = 10,
