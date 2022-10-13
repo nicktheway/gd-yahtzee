@@ -85,11 +85,11 @@ func refresh_for_rolls(rollArray: Array) -> void:
 		rows[i].text = str(get_of_a_kind_res(3 if i == 7 else (4 if i == 8 else 5), rollArray))
 	
 	if not rows[EMappings.FullHouse].pressed:
-		rows[EMappings.FullHouse].text = str(get_full_house_res(rollArray))
+		rows[EMappings.FullHouse].text = '25' if wildcard_multi_yahtzee(rollArray) else str(get_full_house_res(rollArray))
 	if not rows[EMappings.SMStraight].pressed:
-		rows[EMappings.SMStraight].text = '30' if straight_multi_yahtzee(rollArray) else str(get_straight_res(false, rollArray))
+		rows[EMappings.SMStraight].text = '30' if wildcard_multi_yahtzee(rollArray) else str(get_straight_res(false, rollArray))
 	if not rows[EMappings.LGStraight].pressed:
-		rows[EMappings.LGStraight].text = '40' if straight_multi_yahtzee(rollArray) else str(get_straight_res(true, rollArray))
+		rows[EMappings.LGStraight].text = '40' if wildcard_multi_yahtzee(rollArray) else str(get_straight_res(true, rollArray))
 	if not rows[EMappings.Yahtzee].pressed:
 		rows[EMappings.Yahtzee].text = str(50 if is_yahtzee(rollArray) else 0)
 	if not rows[EMappings.Chance].pressed:
@@ -135,9 +135,9 @@ func get_full_house_res(rollArray: Array) -> int:
 		# If there is only one occurance there is no full
 		if rollArray.find(diffNum) == rollArray.find_last(diffNum):
 			return 0
-	return 25 if diffNums.size() <= 2 else 0
+	return 25 if diffNums.size() == 2 else 0
 
-func straight_multi_yahtzee(rollArray: Array) -> bool:
+func wildcard_multi_yahtzee(rollArray: Array) -> bool:
 	var num = rollArray[0]
 	var is_pressed : bool = rows[num - 1].pressed
 	return is_yahtzee(rollArray) and is_pressed and rows[EMappings.Yahtzee].pressed and int(rows[EMappings.Yahtzee].text) != 0
