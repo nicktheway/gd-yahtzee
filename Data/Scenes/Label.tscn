@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Data/StyleBoxes/StyleBox_LabelBG.tres" type="StyleBox" id=1]
+
+[node name="Ones" type="Label"]
+margin_top = 100.0
+margin_right = 150.0
+margin_bottom = 127.0
+rect_min_size = Vector2( 0, 27 )
+text = "Ones"
+valign = 1
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 1 )
